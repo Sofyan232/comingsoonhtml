@@ -1,0 +1,211 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Sofyan232</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .fade-out { opacity: 0; }
+        .fade-in { opacity: 1; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .main-content {
+            max-width: 90%;
+            width: 500px;
+            margin: 2rem auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 640px) {
+            .main-content {
+                width: 95%;
+                margin: 1rem auto;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <!-- Fixed Background Images -->
+    <div id="bg1" class="background-container fade-in"></div>
+    <div id="bg2" class="background-container fade-out"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="glass-card p-8 rounded-xl text-white text-center">
+            <h1 class="text-4xl font-bold mb-6">Coming Soon</h1>
+            
+            <!-- Countdown Section -->
+            <div class="mb-8">
+                <p class="text-xl mb-4" id="countdown-text">Welcome, Sofyan232!</p>
+                <div id="countdown" class="grid grid-cols-4 gap-3">
+                    <div class="glass-card p-3 rounded-lg">
+                        <span id="days" class="text-2xl font-bold">00</span>
+                        <p class="text-sm">Days</p>
+                    </div>
+                    <div class="glass-card p-3 rounded-lg">
+                        <span id="hours" class="text-2xl font-bold">00</span>
+                        <p class="text-sm">Hours</p>
+                    </div>
+                    <div class="glass-card p-3 rounded-lg">
+                        <span id="minutes" class="text-2xl font-bold">00</span>
+                        <p class="text-sm">Minutes</p>
+                    </div>
+                    <div class="glass-card p-3 rounded-lg">
+                        <span id="seconds" class="text-2xl font-bold">00</span>
+                        <p class="text-sm">Seconds</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Form -->
+            <div class="glass-card p-6 rounded-lg mb-8">
+                <h3 class="text-xl mb-4">Get Notified When We Launch</h3>
+                <form class="flex flex-col sm:flex-row gap-3">
+                    <input 
+                        type="email" 
+                        placeholder="Enter your email"
+                        class="flex-1 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:border-white/40"
+                    >
+                    <button class="px-6 py-2 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                        Notify Me
+                    </button>
+                </form>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="flex justify-center gap-4">
+                <a href="#" class="social-icon glass-card">
+                    <i class="fab fa-facebook-f text-xl"></i>
+                </a>
+                <a href="#" class="social-icon glass-card">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="#" class="social-icon glass-card">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="social-icon glass-card">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="#" class="social-icon glass-card">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Background Image Array
+        const backgrounds = [
+            'https://images.pexels.com/photos/1261728/pexels-photo-1261728.jpeg?auto=compress&cs=tinysrgb&w=1920',
+            'https://images.pexels.com/photos/3075993/pexels-photo-3075993.jpeg?auto=compress&cs=tinysrgb&w=1920',
+            'https://images.pexels.com/photos/3679601/pexels-photo-3679601.jpeg?auto=compress&cs=tinysrgb&w=1920',
+            'https://images.pexels.com/photos/1834407/pexels-photo-1834407.jpeg?auto=compress&cs=tinysrgb&w=1920'
+        ];
+
+        let currentIndex = 0;
+        const bg1 = document.getElementById('bg1');
+        const bg2 = document.getElementById('bg2');
+
+        // Initial background setup
+        bg1.style.backgroundImage = `url('${backgrounds[0]}')`;
+        bg2.style.backgroundImage = `url('${backgrounds[1]}')`;
+
+        function changeBackground() {
+            currentIndex = (currentIndex + 1) % backgrounds.length;
+            const nextIndex = (currentIndex + 1) % backgrounds.length;
+
+            if (bg1.classList.contains('fade-in')) {
+                bg2.style.backgroundImage = `url('${backgrounds[nextIndex]}')`;
+                bg1.classList.remove('fade-in');
+                bg1.classList.add('fade-out');
+                bg2.classList.remove('fade-out');
+                bg2.classList.add('fade-in');
+            } else {
+                bg1.style.backgroundImage = `url('${backgrounds[nextIndex]}')`;
+                bg2.classList.remove('fade-in');
+                bg2.classList.add('fade-out');
+                bg1.classList.remove('fade-out');
+                bg1.classList.add('fade-in');
+            }
+        }
+
+        // Change background every 5 seconds
+        setInterval(changeBackground, 5000);
+
+        // Countdown Timer
+        function updateCountdown() {
+            const targetDate = new Date('2025-01-01T00:00:00Z');
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown-text').innerHTML = 'Launch Time Has Arrived! 🎉';
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Initialize countdown
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
